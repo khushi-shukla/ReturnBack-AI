@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReturnBack AI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon"></span>
+      <div>
+        <h2>ReturnBack AI</h2>
+        <h4>Your Career Restart Journey</h4>
+      </div>
+    </div>
+    <span class="top-label">CAREER RESTART WORKSPACE</span>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <p class="side-label">WORKSPACE</p>
+      <a class="nav-link active" href="#dashboard">▦ Dashboard</a>
+      <a class="nav-link" href="#upload">▤ Resume Analysis</a>
+      <a class="nav-link" href="#career">◇ Career Matches</a>
+      <a class="nav-link" href="#skills">↗ Skill Progress</a>
+      <a class="nav-link" href="#interview">▣ Interview Practice</a>
+      <a class="nav-link" href="#history">◷ Profile History</a>
+      <a class="nav-link" href="#roadmap">☷ Learning Roadmap</a>
+      <a class="nav-link" href="#chat">✧ AI Career Assistant</a>
+
+      <div class="sidebar-note">
+        <div class="note-icon">✦</div>
+        <h3>Your experience matters.</h3>
+        <p>Your career break does not define your future. Start again, one step at a time.</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+
+      <section class="welcome-section" id="dashboard">
+        <div>
+          <p class="eyebrow">YOUR PERSONAL DASHBOARD</p>
+          <h2>Welcome back!</h2>
+          <h4>Your next career chapter starts here.</h4>
+        </div>
+        <div class="welcome-icon">✦</div>
+      </section>
+
+      <section class="summary-grid">
+        <article class="summary-card score-card">
+          <div class="card-top">
+            <span>Career Restart Score</span>
+            <span class="icon-box">↗</span>
+          </div>
+          <h2 id="dashboardScore">--<small>/100</small></h2>
+          <p>Your career readiness score</p>
+          <div class="progress-track">
+            <div class="progress-fill" id="scoreProgress"></div>
+          </div>
+        </article>
+
+        <article class="summary-card">
+          <div class="card-top">
+            <span>Skills Identified</span>
+            <span class="icon-box">✧</span>
+          </div>
+          <h2 id="skillsCount">--</h2>
+          <p>Skills found in your resume</p>
+        </article>
+
+        <article class="summary-card">
+          <div class="card-top">
+            <span>Career Matches</span>
+            <span class="icon-box">◇</span>
+          </div>
+          <h2 id="careerCount">--</h2>
+          <p>Potential roles for your profile</p>
+        </article>
+
+        <article class="summary-card">
+          <div class="card-top">
+            <span>Skill Match</span>
+            <span class="icon-box">↗</span>
+          </div>
+          <h2 id="matchCount">--<small>%</small></h2>
+          <p>Your current skill alignment</p>
+        </article>
+      </section>
+
+      <section class="section-block" id="upload">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">STEP 01</p>
+            <h2>Resume Analysis</h2>
+            <h4>Upload your resume to discover your strengths and opportunities.</h4>
+          </div>
+          <span class="heading-icon">▤</span>
+        </div>
+
+        <div class="upload-panel">
+          <div class="upload-symbol">↑</div>
+          <h3>Upload your resume</h3>
+          <p>Choose a PDF, DOCX, JPG, JPEG or PNG file.</p>
+
+          <label class="file-picker" for="resumeFile">
+            Choose Resume
+            <input
+              type="file"
+              id="resumeFile"
+              accept=".pdf,.docx,.jpg,.jpeg,.png"
+            >
+          </label>
+
+          <p id="selectedFile" class="selected-file">No file selected yet</p>
+
+          <button class="primary-button" type="button" onclick="uploadResume()">
+            Analyze Resume →
+          </button>
+
+          <p id="uploadStatus" class="status-message" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="section-block" id="results">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">STEP 02</p>
+            <h2>Your Career Analysis</h2>
+            <h4>Your resume insights, organized in separate cards.</h4>
+          </div>
+        </div>
+
+        <div class="results-grid">
+          <article class="feature-card" id="skills">
+            <div class="feature-icon">✧</div>
+            <h3>Skills Identified</h3>
+            <div id="skillsResult" class="result-content">
+              Your extracted skills will appear here.
+            </div>
+          </article>
+
+          <article class="feature-card" id="career">
+            <div class="feature-icon">◇</div>
+            <h3>Career Matches</h3>
+            <div id="careerResult" class="result-content">
+              Suitable career roles will appear here.
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⌁</div>
+            <h3>Skill Gap Analysis</h3>
+            <div id="skillGapResult" class="result-content">
+              Matched and missing skills will appear here.
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">◎</div>
+            <h3>Profile Analysis</h3>
+            <div id="profileResult" class="result-content">
+              Your profile insights will appear here.
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">✦</div>
+            <h3>Career Re-entry Plan</h3>
+            <div id="reentryResult" class="result-content">
+              Your career re-entry guidance will appear here.
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">↗</div>
+            <h3>Restart Score Details</h3>
+            <div id="restartScoreResult" class="result-content">
+              Your score breakdown will appear here.
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">▦</div>
+            <h3>Career Dashboard Summary</h3>
+            <div id="dashboardResult" class="result-content">
+              Your career summary will appear here.
+            </div>
+          </article>
+
+          <article class="feature-card" id="skillTracker">
+            <div class="feature-icon">↗</div>
+            <h3>Skill Progress Tracker</h3>
+            <div id="skillProgressResult" class="result-content">
+              Your skill progress will appear here.
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block" id="roadmap">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">STEP 03</p>
+            <h2>Your Learning Roadmap</h2>
+            <h4>Build missing skills with a personalized action plan.</h4>
+          </div>
+          <span class="heading-icon">☷</span>
+        </div>
+        <div class="feature-card">
+          <button class="primary-button" onclick="generateRoadmap()">
+            Generate My Roadmap →
+          </button>
+          <div id="roadmapResult" class="result-content spaced-result">
+            Your personalized learning roadmap will appear here.
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block" id="interview">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">STEP 04</p>
+            <h2>Interview Practice</h2>
+            <h4>Practise your answers and build confidence.</h4>
+          </div>
+          <span class="heading-icon">▣</span>
+        </div>
+
+        <div class="results-grid">
+          <article class="feature-card">
+            <h3>Interview Questions</h3>
+            <div id="interviewResult" class="result-content">
+              Your interview questions will appear here after resume analysis.
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <h3>Practice Your Answer</h3>
+            <p id="currentInterviewQuestion" class="question-text">
+              Upload your resume to get interview questions.
+            </p>
+            <label for="interviewAnswer">Your answer</label>
+            <textarea
+              id="interviewAnswer"
+              rows="5"
+              placeholder="Write your answer here..."
+            ></textarea>
+            <button class="primary-button" onclick="submitInterviewAnswer()">
+              Evaluate Answer
+            </button>
+            <button class="secondary-button" onclick="nextInterviewQuestion()">
+              Next Question →
+            </button>
+            <div id="interviewFeedback" class="result-content spaced-result"></div>
+          </article>
+        </div>
+
+        <article class="feature-card interview-stats">
+          <h3>Interview Performance</h3>
+          <div class="results-grid">
+            <div>
+              <p>Session Score</p>
+              <strong id="interviewSessionScore">--</strong>
+            </div>
+            <div>
+              <p>Questions Attempted</p>
+              <strong id="questionsAttempted">0</strong>
+            </div>
+            <div>
+              <p>Average Score</p>
+              <strong id="averageInterviewScore">--</strong>
+            </div>
+          </div>
+          <div id="interviewPerformance" class="result-content"></div>
+        </article>
+      </section>
+
+      <section class="section-block" id="history">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR JOURNEY</p>
+            <h2>Profile History</h2>
+            <h4>Review your previous resume analyses.</h4>
+          </div>
+          <span class="heading-icon">◷</span>
+        </div>
+        <div class="feature-card">
+          <button class="secondary-button" onclick="loadProfileHistory()">
+            View Previous Profiles
+          </button>
+          <div id="profileHistoryResult" class="result-content spaced-result">
+            Your previous profile analyses will appear here.
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block" id="chat">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR AI ASSISTANT</p>
+            <h2>Career Guidance Chat</h2>
+            <h4>Ask questions about your career restart journey.</h4>
+          </div>
+          <span class="heading-icon">✧</span>
+        </div>
+
+        <div class="feature-card">
+          <div id="chatMessages" class="chat-messages">
+            <div class="message ai-message">
+              <div class="message-avatar">✦</div>
+              <div class="message-content">
+                Hi! I'm your ReturnBack AI career assistant. How can I help you?
+              </div>
+            </div>
+          </div>
+          <div class="chat-input-row">
+            <input
+              id="chatInput"
+              type="text"
+              placeholder="Ask your career question..."
+              onkeydown="handleChatKey(event)"
+            >
+            <button class="primary-button" onclick="sendMessage()">Send</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <h2>ReturnBack AI</h2>
+        <h4>Your experience still matters.</h4>
+        <p>Empowering women to restart their careers with confidence.</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script>
+    const resumeInput = document.getElementById("resumeFile");
+    resumeInput.addEventListener("change", function () {
+      const fileLabel = document.getElementById("selectedFile");
+      fileLabel.textContent = this.files.length
+        ? this.files[0].name
+        : "No file selected yet";
+    });
+  </script>
+
+</body>
+</html>
